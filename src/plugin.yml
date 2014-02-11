@@ -1,4 +1,13 @@
 name: ParticlePack
 version: 1.0
-author: Killer2525
+author: Killer5252
 main: me.McKiller5252.particlepack.ParticlePack
+description: Creates Particles hear player!
+commands:
+ particlepack:
+  aliases: [pp, part, ppack]
+  description: Gives you a breif description on the plugin.
+
+permission:
+ particlepack.fire:
+  default: user

@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import me.McKiller5252.particlepack.allparticles.FireParticle;
+import me.McKiller5252.particlepack.command.CommandHandler;
 import me.McKiller5252.particlepack.config.PPConfig;
 import me.McKiller5252.particlepack.listener.ParticlePackListener;
 import me.McKiller5252.particlepack.utility.Particle;
@@ -12,6 +13,7 @@ import me.McKiller5252.particlepack.utility.Particle;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
 import org.bukkit.plugin.java.JavaPlugin;
+
 
 public class ParticlePack extends JavaPlugin {
 	
@@ -38,12 +40,15 @@ public class ParticlePack extends JavaPlugin {
 			
 			registerEvents();
 			loadParticles();
+			
 		} 
 		catch (IOException | InstantiationException | IllegalAccessException | InvalidConfigurationException e) 
 		{
             e.printStackTrace();
             getServer().getPluginManager().disablePlugin(this);
         }
+		
+		this.getCommand("particlepack").setExecutor(new CommandHandler());
 	
 	}
 	private void registerEvents() {
