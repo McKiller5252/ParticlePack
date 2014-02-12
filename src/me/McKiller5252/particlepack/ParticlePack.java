@@ -2,20 +2,31 @@ package me.McKiller5252.particlepack;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 
 import me.McKiller5252.particlepack.allparticles.FireParticle;
 import me.McKiller5252.particlepack.command.CommandHandler;
 import me.McKiller5252.particlepack.config.PPConfig;
 import me.McKiller5252.particlepack.listener.ParticlePackListener;
+import me.McKiller5252.particlepack.menu.gui.ParticlePackGUI;
 import me.McKiller5252.particlepack.utility.Particle;
 
+import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
+import org.bukkit.event.EventHandler;
+import org.bukkit.event.Listener;
+import org.bukkit.event.block.Action;
+import org.bukkit.event.player.PlayerInteractEvent;
+import org.bukkit.event.player.PlayerJoinEvent;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
-public class ParticlePack extends JavaPlugin {
+public class ParticlePack extends JavaPlugin implements Listener {
 	
 	private ArrayList<Particle> particles = new ArrayList<Particle>();
 	private ArrayList<Particle> cparticles = new ArrayList<Particle>();
@@ -24,7 +35,12 @@ public class ParticlePack extends JavaPlugin {
 	
 	private static MessagesFile msg;
 	private static ParticlePack instance;
+	
+	
+	private ParticlePackGUI ppgui;
 	private PPConfig cfg;
+	
+	
 	
 	public void onEnable(){
 		instance = this;
@@ -37,6 +53,9 @@ public class ParticlePack extends JavaPlugin {
 			
 			msg = new MessagesFile(this);
 			msg.init();
+			
+			ppgui = new ParticlePackGUI(this);
+			
 			
 			registerEvents();
 			loadParticles();
@@ -54,13 +73,41 @@ public class ParticlePack extends JavaPlugin {
 	private void registerEvents() {
 		
 		getServer().getPluginManager().registerEvents(new ParticlePackListener(), this);
+		getServer().getPluginManager().registerEvents(this, this);
 	}
+	
+	@EventHandler
+	public void onPlayerClick(PlayerInteractEvent e){
+		Player p = e.getPlayer();
+		if(e.getAction().equals(Action.RIGHT_CLICK_AIR)){
+        if (p.getItemInHand() != null) {
+            ItemStack item = p.getItemInHand();
+            if (item.getType() == Material.BLAZE_ROD) { 
+            	ppgui.show(e.getPlayer()); 
+                }
+            }
+        }
+	}
+	
+	@EventHandler
+	public void join(PlayerJoinEvent e){
+		 Player player = e.getPlayer();
+		 if (!player.getInventory().contains(Material.BLAZE_ROD)){
+			 ItemStack spawnItem = new ItemStack(Material.BLAZE_ROD);
+			 ItemMeta im =  spawnItem.getItemMeta();
+			 im.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "Particle Pack Menu");
+			 im.setLore(Arrays.asList(ChatColor.AQUA + "Right click to open Particle Pack Menu", ChatColor.GRAY + "If you lose the Particle Pack Menu ", ChatColor.GRAY + "Type /particlepack menu "));
+			 spawnItem.setItemMeta(im);
+			 player.getInventory().setItem(7, spawnItem);
+			 }
+		 }
 	
 	
 	private void loadParticles() throws IOException, InstantiationException, IllegalAccessException 
 	{
 		particles.add(new FireParticle());
 	}
+
 	
 	
 	public Particle getPlayerParticle(Player p){
@@ -126,7 +173,7 @@ public class ParticlePack extends JavaPlugin {
 	public static MessagesFile getMessagesFile(){
 		return msg;
 	}
-	
+
 	public void onDisable(){
 		
 		getLogger().info("ParticlePack Disabled! Sad to see it go bye bye");

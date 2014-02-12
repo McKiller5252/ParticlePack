@@ -1,11 +1,13 @@
 package me.McKiller5252.particlepack.command;
 
+import me.McKiller5252.particlepack.ParticlePack;
+import me.McKiller5252.particlepack.utility.Particle;
+
 import org.bukkit.ChatColor;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
-
 
 public class CommandHandler implements CommandExecutor {
 	
@@ -38,8 +40,91 @@ public class CommandHandler implements CommandExecutor {
 				 player.sendMessage(pColor + "Version: " + sColor + "1.0");
 				 player.sendMessage(pColor + "Help: " + sColor + "Type " + ChatColor.LIGHT_PURPLE + "/particlepack help" + sColor + " to get a list of commands.");
 			 }
+			 else 
+	            {
+	                if (args[0].equalsIgnoreCase("off"))
+	                {
+	                    if (player.hasPermission("particlepack.off"))
+	                    {
+	                        ParticlePack.Instance().removerPlayerParticle(player);
+	                        player.sendMessage(ChatColor.RED + "You no longer have a particle!");
+	                    }
+	                }
+	                else if (args[0].equalsIgnoreCase("help"))
+	                {
+	                	if (player.hasPermission("trails.help"))
+	                    {
+	                		player.sendMessage(sColor + "" +ChatColor.STRIKETHROUGH+"--------------------" + ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + sColor + "" + ChatColor.STRIKETHROUGH+"--------------------");
+	                        player.sendMessage(pColor + "/particlepack off " + sColor + "- Turns off any particle you have on");
+	                        player.sendMessage(pColor + "/particlepack list " + sColor + "- Displays a list of all particles");
+	                        player.sendMessage(pColor + "/particlepack (name) " + sColor + "- Gives you the particle by the given name");
+	                        player.sendMessage(pColor + "/particlepack help " + sColor + "- Displays this page");
+	                    }
+	                	
+	                }
+	                else if (args[0].equalsIgnoreCase("list"))
+	                {
+	                	player.sendMessage(sColor + "" +ChatColor.STRIKETHROUGH+"--------------------" + ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + sColor + "" + ChatColor.STRIKETHROUGH+"--------------------");
+	                	player.sendMessage(sColor + "" +ChatColor.STRIKETHROUGH+"--------------------" + ChatColor.RED + "[" + ChatColor.GOLD + "ParticleList" + ChatColor.RED + "]" + sColor + "" + ChatColor.STRIKETHROUGH+"--------------------");
+	                    int i = 1;
+	                    for (Particle par : ParticlePack.Instance().getParticleBase())
+	                    {
+	                        player.sendMessage(pColor + "" + i + ". " + sColor + par.getName());
+	                        i++;
+	                    }
+	                    if (ParticlePack.Instance().getExternalParticles().size() == 0)
+	                        return;
+	                    player.sendMessage(sColor + "" +ChatColor.STRIKETHROUGH+"--------------------" + ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + sColor + "" + ChatColor.STRIKETHROUGH+"--------------------");
+	                    player.sendMessage(sColor + "" +ChatColor.STRIKETHROUGH+"--------------------" + ChatColor.RED + "[" + ChatColor.GOLD + "ParticleList" + ChatColor.RED + "]" + sColor + "" + ChatColor.STRIKETHROUGH+"--------------------");
+	                    player.sendMessage(sColor + "" +ChatColor.STRIKETHROUGH+"--------------------" + ChatColor.RED + "[" + ChatColor.GOLD + "(External)" + ChatColor.RED + "]" + sColor + "" + ChatColor.STRIKETHROUGH+"--------------------");
+	                    for (Particle par : ParticlePack.Instance().getExternalParticles())
+	                    {
+	                        player.sendMessage(pColor + "" + i + ". " + sColor + par.getName());
+	                        i++;
+	                    }
+	                }
+	                else 
+	                {
+	                    for (Particle par : ParticlePack.Instance().getPacticles())
+	                    {
+	                        if (args[0].equalsIgnoreCase(par.getName()) || (par.getName().contains(" ") && par.getName().contains(args[0])))
+	                        {
+	                            if (!(par.canUse(player))) 
+	                            {
+	                                player.sendMessage(ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + ChatColor.RED + " You do not have permission to use this particle!");
+	                                return;
+	                            }
+	                            if (par.getName().contains(" "))
+	                            {
+	                                String[] gs = par.getName().split(" ");
+	                                if (args.length == 1)
+	                                {
+	                                    player.sendMessage(ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + ChatColor.RED + " Please enter the" + gs[1] + "for the" + gs[0] + "particle!");
+	                                    return;
+	                                }
+	                                else
+	                                {
+	                                    String str = args[1];
+	                                    player.sendMessage(ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + ChatColor.RED + " You now have the " + ChatColor.YELLOW +gs[0] + ChatColor.RED + " particle with type " + ChatColor.YELLOW + args[1] + ChatColor.RED + "!");
+	                                    Particle tra = par.getClass().newInstance();
+	                                    tra.setValue(str);
+	                                    ParticlePack.Instance().setPlayerParticle(player, tra);
+	                                    return;
+	                                }
+	                            }
+	                            else {
+	                            	ParticlePack.Instance().setPlayerParticle(player, par);
+	                                player.sendMessage(ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + ChatColor.RED + " You now have the " + ChatColor.YELLOW + par.getName() + ChatColor.RED + " particle!");
+	                                return;
+	                            }
+	                        }
+	                    }
+	                
+	         }
 		 }
-		 return;
-	}
-
+		
+	 }
+		 player.sendMessage(ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + ChatColor.DARK_RED + " That command does not exist. Do /pp help for help.");
+   }
 }
+		

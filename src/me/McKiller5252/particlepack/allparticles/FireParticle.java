@@ -12,7 +12,7 @@ public class FireParticle implements Particle {
 	@Override
 	public String getName() {
 		
-		return "fire";
+		return "Fire";
 	}
 
 	@Override

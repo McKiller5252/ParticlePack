@@ -7,7 +7,3 @@ commands:
  particlepack:
   aliases: [pp, part, ppack]
   description: Gives you a breif description on the plugin.
-
-permission:
- particlepack.fire:
-  default: user
