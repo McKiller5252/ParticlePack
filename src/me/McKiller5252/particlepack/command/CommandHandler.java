@@ -1,13 +1,18 @@
 package me.McKiller5252.particlepack.command;
 
+import java.util.Arrays;
+
 import me.McKiller5252.particlepack.ParticlePack;
 import me.McKiller5252.particlepack.utility.Particle;
 
 import org.bukkit.ChatColor;
+import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
+import org.bukkit.inventory.ItemStack;
+import org.bukkit.inventory.meta.ItemMeta;
 
 public class CommandHandler implements CommandExecutor {
 	
@@ -36,7 +41,7 @@ public class CommandHandler implements CommandExecutor {
 			 {
 				 player.sendMessage(sColor + "" +ChatColor.STRIKETHROUGH+"--------------------" + ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + sColor + "" + ChatColor.STRIKETHROUGH+"--------------------");
 				 player.sendMessage(pColor + "Author: " + sColor + "Killer5252");
-				 player.sendMessage(pColor + "Description: " + sColor + "Creates Particles hear player!");
+				 player.sendMessage(pColor + "Description: " + sColor + "Creates Particles near player!");
 				 player.sendMessage(pColor + "Version: " + sColor + "1.0");
 				 player.sendMessage(pColor + "Help: " + sColor + "Type " + ChatColor.LIGHT_PURPLE + "/particlepack help" + sColor + " to get a list of commands.");
 			 }
@@ -47,12 +52,12 @@ public class CommandHandler implements CommandExecutor {
 	                    if (player.hasPermission("particlepack.off"))
 	                    {
 	                        ParticlePack.Instance().removerPlayerParticle(player);
-	                        player.sendMessage(ChatColor.RED + "You no longer have a particle!");
+	                        player.sendMessage(ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + ChatColor.RED + " You no longer have a particle!");
 	                    }
 	                }
 	                else if (args[0].equalsIgnoreCase("help"))
 	                {
-	                	if (player.hasPermission("trails.help"))
+	                	if (player.hasPermission("particlepack.help"))
 	                    {
 	                		player.sendMessage(sColor + "" +ChatColor.STRIKETHROUGH+"--------------------" + ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + sColor + "" + ChatColor.STRIKETHROUGH+"--------------------");
 	                        player.sendMessage(pColor + "/particlepack off " + sColor + "- Turns off any particle you have on");
@@ -62,10 +67,18 @@ public class CommandHandler implements CommandExecutor {
 	                    }
 	                	
 	                }
+	                else if (args[0].equalsIgnoreCase("menu"))
+	                {
+	                	if (player.hasPermission("particlepack.menu"))
+	                	{
+	                		player.sendMessage(ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + ChatColor.GREEN + " You have given yourself the" + ChatColor.YELLOW + "ParticlePack Menu Tool!");
+	                    	player.getInventory().setItem(7, particlepackMenu());
+	                	}
+	                }
 	                else if (args[0].equalsIgnoreCase("list"))
 	                {
 	                	player.sendMessage(sColor + "" +ChatColor.STRIKETHROUGH+"--------------------" + ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + sColor + "" + ChatColor.STRIKETHROUGH+"--------------------");
-	                	player.sendMessage(sColor + "" +ChatColor.STRIKETHROUGH+"--------------------" + ChatColor.RED + "[" + ChatColor.GOLD + "ParticleList" + ChatColor.RED + "]" + sColor + "" + ChatColor.STRIKETHROUGH+"--------------------");
+	                	player.sendMessage(sColor + "" +ChatColor.STRIKETHROUGH+"--------------------" + ChatColor.RED + "[" + ChatColor.GOLD + "Particle-List" + ChatColor.RED + "]" + sColor + "" + ChatColor.STRIKETHROUGH+"--------------------");
 	                    int i = 1;
 	                    for (Particle par : ParticlePack.Instance().getParticleBase())
 	                    {
@@ -119,12 +132,23 @@ public class CommandHandler implements CommandExecutor {
 	                            }
 	                        }
 	                    }
-	                
-	         }
+	                }
+	             
+	            }
+			 }
 		 }
-		
-	 }
-		 player.sendMessage(ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + ChatColor.DARK_RED + " That command does not exist. Do /pp help for help.");
-   }
+
+	private ItemStack particlepackMenu() {
+		 ItemStack spawnItem;
+	        ItemMeta im;
+	            spawnItem = new ItemStack(Material.BLAZE_ROD);
+	            im = spawnItem.getItemMeta();
+	            im.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "Particle Pack Menu");
+	            im.setLore(Arrays.asList(ChatColor.AQUA + "Right click to open Particle Pack Menu"));
+	            spawnItem.setItemMeta(im);
+	           
+	        return spawnItem;
+	       
+	}
 }
 		

@@ -2,11 +2,9 @@ package me.McKiller5252.particlepack.menu.gui;
 
 import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
-import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
-import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.inventory.InventoryClickEvent;
 import org.bukkit.inventory.Inventory;
@@ -18,15 +16,25 @@ public class ParticlePackGUI implements Listener {
 
 private Inventory inv;
 	
-	private ItemStack a;
+	private ItemStack a, b;
+	private ItemStack z;
 
 	public ParticlePackGUI(Plugin m) {
 		
-		inv = Bukkit.getServer().createInventory(null, 18, ChatColor.BLACK + "ParticlePack Menu");
+		inv = Bukkit.getServer().createInventory(null, 18, ChatColor.AQUA + "ParticlePack Menu");
 		
 		a = createItem(Material.FIRE, ChatColor.GREEN + "Fire");
+		b = createItem(Material.FIREWORK, ChatColor.GREEN + "Firework");
+		
+		z = createItem(Material.FEATHER, ChatColor.GREEN + "Particle Off");
+		
 		
 		inv.setItem(0, a);
+		inv.setItem(1, b);
+		
+		
+		
+		inv.setItem(17, z);
 		
 		Bukkit.getServer().getPluginManager().registerEvents(this, m);
 	}
@@ -44,7 +52,7 @@ private Inventory inv;
 	}
 	
 
-	@EventHandler(priority = EventPriority.HIGH)
+	@EventHandler
 	public void click(InventoryClickEvent e){
 		
 		Player p = (Player) e.getWhoClicked();
@@ -55,9 +63,24 @@ private Inventory inv;
 			e.setCancelled(true);
 			
 		if(e.getCurrentItem().getType() == Material.FIRE){
-	
-				p.getPlayer().setGameMode(GameMode.CREATIVE);
-		   }	
+			
+			p.closeInventory();
+			p.performCommand("pp fire");
+			
+		}
+		if(e.getCurrentItem().getType() == Material.FIREWORK){
+			
+			p.closeInventory();
+			p.performCommand("pp firework");
+			
+		}
+		if(e.getCurrentItem().getType() == Material.FEATHER){
+			
+			p.closeInventory();
+			p.performCommand("pp off");
+			
+		}
+		
 		}
 	  }
 	}

@@ -6,11 +6,13 @@ import java.util.Arrays;
 import java.util.HashMap;
 
 import me.McKiller5252.particlepack.allparticles.FireParticle;
+import me.McKiller5252.particlepack.allparticles.FireworkParticle;
 import me.McKiller5252.particlepack.command.CommandHandler;
 import me.McKiller5252.particlepack.config.PPConfig;
 import me.McKiller5252.particlepack.listener.ParticlePackListener;
 import me.McKiller5252.particlepack.menu.gui.ParticlePackGUI;
 import me.McKiller5252.particlepack.utility.Particle;
+import me.McKiller5252.particlepack.utility.RandomFireworks;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
@@ -23,6 +25,7 @@ import org.bukkit.event.player.PlayerInteractEvent;
 import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
+import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 
 
@@ -35,6 +38,7 @@ public class ParticlePack extends JavaPlugin implements Listener {
 	
 	private static MessagesFile msg;
 	private static ParticlePack instance;
+	private static Plugin plug;
 	
 	
 	private ParticlePackGUI ppgui;
@@ -55,6 +59,9 @@ public class ParticlePack extends JavaPlugin implements Listener {
 			msg.init();
 			
 			ppgui = new ParticlePackGUI(this);
+			
+			RandomFireworks.getManager().addColors();
+			RandomFireworks.getManager().addTypes();
 			
 			
 			registerEvents();
@@ -106,6 +113,7 @@ public class ParticlePack extends JavaPlugin implements Listener {
 	private void loadParticles() throws IOException, InstantiationException, IllegalAccessException 
 	{
 		particles.add(new FireParticle());
+		particles.add(new FireworkParticle());
 	}
 
 	
@@ -173,10 +181,14 @@ public class ParticlePack extends JavaPlugin implements Listener {
 	public static MessagesFile getMessagesFile(){
 		return msg;
 	}
+	public static Plugin getPlugin() {
+		return plug;
+	}
 
 	public void onDisable(){
 		
 		getLogger().info("ParticlePack Disabled! Sad to see it go bye bye");
 	
 	}
+	
 }
