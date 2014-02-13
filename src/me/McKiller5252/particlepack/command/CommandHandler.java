@@ -71,7 +71,7 @@ public class CommandHandler implements CommandExecutor {
 	                {
 	                	if (player.hasPermission("particlepack.menu"))
 	                	{
-	                		player.sendMessage(ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + ChatColor.GREEN + " You have given yourself the" + ChatColor.YELLOW + "ParticlePack Menu Tool!");
+	                		player.sendMessage(ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + ChatColor.GREEN + " You have given yourself the" + ChatColor.YELLOW + " ParticlePack Menu Tool!");
 	                    	player.getInventory().setItem(7, particlepackMenu());
 	                	}
 	                }

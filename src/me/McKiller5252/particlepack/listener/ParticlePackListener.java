@@ -26,7 +26,7 @@ public class ParticlePackListener implements Listener {
         }
     }
 	
-	public boolean blockChange(org.bukkit.event.player.PlayerMoveEvent event)
+	public boolean blockChange(PlayerMoveEvent event)
     {
         Location loc = event.getFrom();
         if (loc.getBlockX() == event.getTo().getBlockX())
