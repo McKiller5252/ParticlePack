@@ -141,7 +141,7 @@ public class CommandHandler implements CommandExecutor {
 	private ItemStack particlepackMenu() {
 		 ItemStack spawnItem;
 	        ItemMeta im;
-	            spawnItem = new ItemStack(Material.BLAZE_ROD);
+	            spawnItem = new ItemStack(Material.BONE);
 	            im = spawnItem.getItemMeta();
 	            im.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "Particle Pack Menu");
 	            im.setLore(Arrays.asList(ChatColor.AQUA + "Right click to open Particle Pack Menu"));

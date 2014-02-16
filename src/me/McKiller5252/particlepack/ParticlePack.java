@@ -83,7 +83,7 @@ public class ParticlePack extends JavaPlugin implements Listener {
 		if(e.getAction().equals(Action.RIGHT_CLICK_AIR)){
         if (p.getItemInHand() != null) {
             ItemStack item = p.getItemInHand();
-            if (item.getType() == Material.BLAZE_ROD) { 
+            if (item.getType() == Material.BONE) { 
             	ppgui.show(e.getPlayer()); 
                 }
             }
@@ -93,8 +93,8 @@ public class ParticlePack extends JavaPlugin implements Listener {
 	@EventHandler
 	public void join(PlayerJoinEvent e){
 		 Player player = e.getPlayer();
-		 if (!player.getInventory().contains(Material.BLAZE_ROD)){
-			 ItemStack spawnItem = new ItemStack(Material.BLAZE_ROD);
+		 if (!player.getInventory().contains(Material.BONE)){
+			 ItemStack spawnItem = new ItemStack(Material.BONE);
 			 ItemMeta im =  spawnItem.getItemMeta();
 			 im.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "Particle Pack Menu");
 			 im.setLore(Arrays.asList(ChatColor.AQUA + "Right click to open Particle Pack Menu", ChatColor.GRAY + "If you lose the Particle Pack Menu ", ChatColor.GRAY + "Type /pp menu "));
@@ -107,7 +107,7 @@ public class ParticlePack extends JavaPlugin implements Listener {
 	private void loadParticles() throws IOException, InstantiationException, IllegalAccessException 
 	{
 		particles.add(new FireParticle());
-		particles.add(new FireworkParticle(this));
+		particles.add(new FireworkParticle());
 		particles.add(new SmokeParticle());
 		particles.add(new EnderParticle());
 		particles.add(new ExplosionParticle());
@@ -125,6 +125,11 @@ public class ParticlePack extends JavaPlugin implements Listener {
 		particles.add(new ColorParticle());
 		particles.add(new SplashParticle());
 		particles.add(new VoidParticle());
+		//particles.add(new EmeraldParticle());
+		particles.add(new CloudParticle());
+		//particles.add(new BubbleParticle());
+		particles.add(new WitchParticle());
+		particles.add(new InstantSpellParticle());
 	}
 
 	
