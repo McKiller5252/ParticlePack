@@ -10,6 +10,7 @@ import me.McKiller5252.particlepack.command.CommandHandler;
 import me.McKiller5252.particlepack.config.PPConfig;
 import me.McKiller5252.particlepack.listener.ParticlePackListener;
 import me.McKiller5252.particlepack.menu.ParticlePackGUI;
+import me.McKiller5252.particlepack.utility.CoolDownManager;
 import me.McKiller5252.particlepack.utility.Particle;
 import me.McKiller5252.particlepack.utility.RandomFireworks;
 
@@ -24,6 +25,7 @@ import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
+import org.bukkit.scheduler.BukkitTask;
 
 
 
@@ -37,6 +39,9 @@ public class ParticlePack extends JavaPlugin implements Listener {
 	
 	private static ParticlePack instance;
 	private static Plugin plug;
+	
+	public CoolDownManager cool1down;
+	public HashMap<String, Integer> cooldown1;
 	
 	
 	private ParticlePackGUI ppgui;
@@ -61,6 +66,10 @@ public class ParticlePack extends JavaPlugin implements Listener {
 			registerEvents();
 			loadParticles();
 			
+			
+			@SuppressWarnings("unused")
+			BukkitTask Cooldown = new CoolDownManager(this).runTaskTimer(this, 20, 20);
+		    cooldown1 = new HashMap<String, Integer>();
 		} 
 		catch (IOException | InstantiationException | IllegalAccessException | InvalidConfigurationException e) 
 		{
@@ -83,7 +92,7 @@ public class ParticlePack extends JavaPlugin implements Listener {
 		if(e.getAction().equals(Action.RIGHT_CLICK_AIR)){
         if (p.getItemInHand() != null) {
             ItemStack item = p.getItemInHand();
-            if (item.getType() == Material.BONE) { 
+            if (item.getType() == Material.BLAZE_ROD) { 
             	ppgui.show(e.getPlayer()); 
                 }
             }
@@ -93,8 +102,8 @@ public class ParticlePack extends JavaPlugin implements Listener {
 	@EventHandler
 	public void join(PlayerJoinEvent e){
 		 Player player = e.getPlayer();
-		 if (!player.getInventory().contains(Material.BONE)){
-			 ItemStack spawnItem = new ItemStack(Material.BONE);
+		 if (!player.getInventory().contains(Material.BLAZE_ROD)){
+			 ItemStack spawnItem = new ItemStack(Material.BLAZE_ROD);
 			 ItemMeta im =  spawnItem.getItemMeta();
 			 im.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "Particle Pack Menu");
 			 im.setLore(Arrays.asList(ChatColor.AQUA + "Right click to open Particle Pack Menu", ChatColor.GRAY + "If you lose the Particle Pack Menu ", ChatColor.GRAY + "Type /pp menu "));

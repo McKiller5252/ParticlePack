@@ -4,29 +4,27 @@ import me.McKiller5252.particlepack.ParticlePack;
 import me.McKiller5252.particlepack.utility.Particle;
 import me.McKiller5252.particlepack.utility.RandomFireworks;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
-import org.bukkit.scheduler.BukkitRunnable;
 
 public class FireworkParticle implements Particle {
 	
 	ParticlePack plugin = ParticlePack.Instance();
+	
+	private int cooldown1 = 5;
 
 	public String getName() 
     {
         return "Firework";
     }
 
-    public void preformEffect(final Player player) {
-    	Bukkit.getScheduler().scheduleSyncDelayedTask(plugin, new BukkitRunnable(){
-    		Location loc = player.getLocation().add(0, 1, 0);
-    		@Override
-    		public void run() {
-    			RandomFireworks.getManager().launchRandomFirework(loc);
-    			}
-    	},5L);
-   }
+	public void preformEffect(final Player player) {
+		if (plugin.cooldown1.get(player.getName()) <= 0) {
+			plugin.cooldown1.put(player.getName(), cooldown1);
+			Location loc = player.getLocation();
+		    RandomFireworks.getManager().launchRandomFirework(loc);
+		    }
+		}
 		
  
 

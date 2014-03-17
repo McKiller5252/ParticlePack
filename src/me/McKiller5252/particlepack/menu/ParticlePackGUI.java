@@ -21,7 +21,7 @@ private Inventory inv;
 
 	public ParticlePackGUI(Plugin m) {
 		
-		inv = Bukkit.getServer().createInventory(null, 45, ChatColor.DARK_PURPLE + "ParticlePack Menu");
+		inv = Bukkit.getServer().createInventory(null, 27, ChatColor.DARK_PURPLE + "ParticlePack Menu");
 		
 		a = createItem(Material.FIRE, ChatColor.GREEN + "Fire");
 		b = createItem(Material.FIREWORK, ChatColor.GREEN + "Firework");
@@ -69,11 +69,10 @@ private Inventory inv;
 		inv.setItem(16, r);
 		inv.setItem(17, s);
 		inv.setItem(18, t);
-		//inv.setItem(19, u);
-		inv.setItem(19, v);
-		//inv.setItem(21, w);
+		inv.setItem(26, v);
+		
 	
-		inv.setItem(44, z);
+		inv.setItem(22, z);
 		
 		Bukkit.getServer().getPluginManager().registerEvents(this, m);
 	}
@@ -98,7 +97,7 @@ private Inventory inv;
 		
 		if (e.getCurrentItem() != null && !e.getCurrentItem().getType().equals(Material.AIR)){
 			
-		if (e.getInventory().getSize() == 45) {
+		if (e.getInventory().getSize() == 27) {
 			e.setCancelled(true);
 			
 		if(e.getCurrentItem().getType() == Material.FIRE){

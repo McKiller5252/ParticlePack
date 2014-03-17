@@ -39,7 +39,7 @@ public class CommandHandler implements CommandExecutor {
 		 {
 			 if(args.length == 0)
 			 {
-				 player.sendMessage(sColor + "" +ChatColor.STRIKETHROUGH+"--------------------" + ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + sColor + "" + ChatColor.STRIKETHROUGH+"--------------------");
+				 player.sendMessage(sColor + "" + ChatColor.STRIKETHROUGH + "--------------------" + ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + sColor + "" + ChatColor.STRIKETHROUGH+"--------------------");
 				 player.sendMessage(pColor + "Author: " + sColor + "Killer5252");
 				 player.sendMessage(pColor + "Description: " + sColor + "Creates Particles near player!");
 				 player.sendMessage(pColor + "Version: " + sColor + "1.0");
@@ -141,7 +141,7 @@ public class CommandHandler implements CommandExecutor {
 	private ItemStack particlepackMenu() {
 		 ItemStack spawnItem;
 	        ItemMeta im;
-	            spawnItem = new ItemStack(Material.BONE);
+	            spawnItem = new ItemStack(Material.BLAZE_ROD);
 	            im = spawnItem.getItemMeta();
 	            im.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "Particle Pack Menu");
 	            im.setLore(Arrays.asList(ChatColor.AQUA + "Right click to open Particle Pack Menu"));
