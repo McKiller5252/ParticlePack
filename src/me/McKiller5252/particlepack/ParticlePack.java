@@ -1,22 +1,16 @@
 package me.McKiller5252.particlepack;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
+import java.util.*;
 
 import me.McKiller5252.particlepack.allparticles.*;
 import me.McKiller5252.particlepack.command.CommandHandler;
-import me.McKiller5252.particlepack.config.PPConfig;
 import me.McKiller5252.particlepack.listener.ParticlePackListener;
 import me.McKiller5252.particlepack.menu.ParticlePackGUI;
-import me.McKiller5252.particlepack.utility.CoolDownManager;
-import me.McKiller5252.particlepack.utility.Particle;
-import me.McKiller5252.particlepack.utility.RandomFireworks;
+import me.McKiller5252.particlepack.utility.*;
 
 import org.bukkit.ChatColor;
 import org.bukkit.Material;
-import org.bukkit.configuration.InvalidConfigurationException;
 import org.bukkit.entity.Player;
 import org.bukkit.event.*;
 import org.bukkit.event.block.*;
@@ -45,8 +39,6 @@ public class ParticlePack extends JavaPlugin implements Listener {
 	
 	
 	private ParticlePackGUI ppgui;
-	private PPConfig cfg;
-	
 	
 	
 	public void onEnable(){
@@ -54,9 +46,6 @@ public class ParticlePack extends JavaPlugin implements Listener {
 		try
 		{
 			getLogger().info("ParticlePack Enabled! Enjoy the particles :D");
-			
-			cfg = new PPConfig(this);
-			cfg.init();
 			
 			ppgui = new ParticlePackGUI(this);
 			
@@ -71,7 +60,7 @@ public class ParticlePack extends JavaPlugin implements Listener {
 			BukkitTask Cooldown = new CoolDownManager(this).runTaskTimer(this, 20, 20);
 		    cooldown1 = new HashMap<String, Integer>();
 		} 
-		catch (IOException | InstantiationException | IllegalAccessException | InvalidConfigurationException e) 
+		catch (IOException | InstantiationException | IllegalAccessException e) 
 		{
             e.printStackTrace();
             getServer().getPluginManager().disablePlugin(this);
@@ -134,9 +123,7 @@ public class ParticlePack extends JavaPlugin implements Listener {
 		particles.add(new ColorParticle());
 		particles.add(new SplashParticle());
 		particles.add(new VoidParticle());
-		//particles.add(new EmeraldParticle());
 		particles.add(new CloudParticle());
-		//particles.add(new BubbleParticle());
 		particles.add(new WitchParticle());
 		particles.add(new InstantSpellParticle());
 	}
@@ -193,10 +180,6 @@ public class ParticlePack extends JavaPlugin implements Listener {
 		{
 			particles.remove(par);
 		}
-	}
-	
-	public PPConfig getPluginConfig(){
-		return cfg;
 	}
 	
 	public static ParticlePack Instance(){

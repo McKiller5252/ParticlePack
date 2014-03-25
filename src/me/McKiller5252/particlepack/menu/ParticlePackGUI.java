@@ -42,9 +42,7 @@ private Inventory inv;
 		r = createItem(Material.WATER_BUCKET , ChatColor.GREEN + "Splash");
 		s = createItem(Material.BEDROCK , ChatColor.GREEN + "Void");
 		t = createItem(Material.WATER , ChatColor.GREEN + "Water Drip");
-		//u = createItem(Material.EMERALD , ChatColor.GREEN + "Emerald");
 		v = createItem(Material.WEB , ChatColor.GREEN + "Cloud");
-		//w = createItem(Material.FISHING_ROD , ChatColor.GREEN + "Bubbles");
 		
 		
 		z = createItem(Material.FEATHER, ChatColor.GREEN + "Particle Off");
@@ -214,30 +212,12 @@ private Inventory inv;
 			p.performCommand("pp splash");
 			
 		}
-		//if(e.getCurrentItem().getType() == Material.EMERALD){
-			
-			//p.closeInventory();
-			//p.performCommand("pp emerald");
-			
-		//}
 		if(e.getCurrentItem().getType() == Material.WEB){
 			
 			p.closeInventory();
 			p.performCommand("pp cloud");
 			
 		}
-		//if(e.getCurrentItem().getType() == Material.FISHING_ROD){
-			
-			//p.closeInventory();
-			//p.performCommand("pp bubble");
-			
-		//}
-
-
-
-		
-		
-
 		if(e.getCurrentItem().getType() == Material.FEATHER){
 			
 			p.closeInventory();

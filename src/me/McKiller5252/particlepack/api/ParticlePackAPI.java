@@ -3,7 +3,6 @@ package me.McKiller5252.particlepack.api;
 import org.bukkit.entity.Player;
 
 import me.McKiller5252.particlepack.ParticlePack;
-import me.McKiller5252.particlepack.config.PPConfig;
 import me.McKiller5252.particlepack.utility.Particle;
 
 public class ParticlePackAPI {
@@ -26,11 +25,6 @@ public class ParticlePackAPI {
 	public static void removeCustomeParticle(Particle par)
 	{
 		ParticlePack.Instance().removeParticle(par);
-	}
-	
-	public static PPConfig getParticlePackConfiguration()
-	{
-		return ParticlePack.Instance().getPluginConfig();
 	}
 
 }
