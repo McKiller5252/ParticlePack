@@ -45,10 +45,7 @@ public class CommandHandler implements CommandExecutor {
 				 player.sendMessage(pColor + "Version: " + sColor + "1.0");
 				 player.sendMessage(pColor + "Help: " + sColor + "Type " + ChatColor.LIGHT_PURPLE + "/particlepack help" + sColor + " to get a list of commands.");
 			 }
-			 else 
-	            {
-	                if (args[0].equalsIgnoreCase("off"))
-	                {
+			 else { if (args[0].equalsIgnoreCase("off")) {
 	                    if (player.hasPermission("particlepack.off"))
 	                    {
 	                        ParticlePack.Instance().removerPlayerParticle(player);

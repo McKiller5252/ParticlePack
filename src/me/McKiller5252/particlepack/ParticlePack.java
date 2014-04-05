@@ -78,7 +78,7 @@ public class ParticlePack extends JavaPlugin implements Listener {
 	@EventHandler
 	public void onPlayerClick(PlayerInteractEvent e){
 		Player p = e.getPlayer();
-		if(e.getAction().equals(Action.RIGHT_CLICK_AIR)){
+		if(e.getAction() == Action.RIGHT_CLICK_BLOCK | e.getAction() == Action.RIGHT_CLICK_AIR){
         if (p.getItemInHand() != null) {
             ItemStack item = p.getItemInHand();
             if (item.getType() == Material.BLAZE_ROD) { 
@@ -94,7 +94,7 @@ public class ParticlePack extends JavaPlugin implements Listener {
 		 if (!player.getInventory().contains(Material.BLAZE_ROD)){
 			 ItemStack spawnItem = new ItemStack(Material.BLAZE_ROD);
 			 ItemMeta im =  spawnItem.getItemMeta();
-			 im.setDisplayName(ChatColor.YELLOW + "" + ChatColor.BOLD + "Particle Pack Menu");
+			 im.setDisplayName(ChatColor.GOLD + "" + ChatColor.BOLD + "Particle Pack Menu (Right Click)");
 			 im.setLore(Arrays.asList(ChatColor.AQUA + "Right click to open Particle Pack Menu", ChatColor.GRAY + "If you lose the Particle Pack Menu ", ChatColor.GRAY + "Type /pp menu "));
 			 spawnItem.setItemMeta(im);
 			 player.getInventory().setItem(7, spawnItem);
