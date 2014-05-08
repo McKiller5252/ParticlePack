@@ -18,6 +18,7 @@ public class CommandHandler implements CommandExecutor {
 	
 	public ChatColor pColor = ChatColor.GREEN;
 	public ChatColor sColor = ChatColor.YELLOW;
+	public ChatColor bold = ChatColor.BOLD;
 	
 
 	@Override
@@ -115,7 +116,7 @@ public class CommandHandler implements CommandExecutor {
 	                                else
 	                                {
 	                                    String str = args[1];
-	                                    player.sendMessage(ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + ChatColor.RED + " You now have the " + ChatColor.YELLOW +gs[0] + ChatColor.RED + " particle with type " + ChatColor.YELLOW + args[1] + ChatColor.RED + "!");
+	                                    player.sendMessage(ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + ChatColor.RED + " You now have the " + ChatColor.YELLOW + gs[0] + ChatColor.RED + " particle with type " + ChatColor.YELLOW + args[1] + ChatColor.RED + "!");
 	                                    Particle tra = par.getClass().newInstance();
 	                                    tra.setValue(str);
 	                                    ParticlePack.Instance().setPlayerParticle(player, tra);
@@ -124,7 +125,7 @@ public class CommandHandler implements CommandExecutor {
 	                            }
 	                            else {
 	                            	ParticlePack.Instance().setPlayerParticle(player, par);
-	                                player.sendMessage(ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + ChatColor.RED + " You now have the " + ChatColor.YELLOW + par.getName() + ChatColor.RED + " particle!");
+	                                player.sendMessage(ChatColor.RED + "[" + ChatColor.GOLD + "ParticlePack" + ChatColor.RED + "]" + ChatColor.GREEN + " You now have the " + ChatColor.YELLOW + bold.toString() + par.getName() + ChatColor.GREEN + " particle!");
 	                                return;
 	                            }
 	                        }

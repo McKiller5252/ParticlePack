@@ -6,7 +6,7 @@ import java.util.*;
 import me.McKiller5252.particlepack.allparticles.*;
 import me.McKiller5252.particlepack.command.CommandHandler;
 import me.McKiller5252.particlepack.listener.ParticlePackListener;
-import me.McKiller5252.particlepack.menu.ParticlePackGUI;
+import me.McKiller5252.particlepack.menu.ParticlePackMenu;
 import me.McKiller5252.particlepack.utility.*;
 
 import org.bukkit.ChatColor;
@@ -20,9 +20,6 @@ import org.bukkit.inventory.meta.ItemMeta;
 import org.bukkit.plugin.Plugin;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.bukkit.scheduler.BukkitTask;
-
-
-
 
 public class ParticlePack extends JavaPlugin implements Listener {
 	
@@ -38,7 +35,7 @@ public class ParticlePack extends JavaPlugin implements Listener {
 	public HashMap<String, Integer> cooldown1;
 	
 	
-	private ParticlePackGUI ppgui;
+	private ParticlePackMenu ppgui;
 	
 	
 	public void onEnable(){
@@ -47,7 +44,7 @@ public class ParticlePack extends JavaPlugin implements Listener {
 		{
 			getLogger().info("ParticlePack Enabled! Enjoy the particles :D");
 			
-			ppgui = new ParticlePackGUI(this);
+			ppgui = new ParticlePackMenu(this);
 			
 			RandomFireworks.getManager().addColors();
 			RandomFireworks.getManager().addTypes();

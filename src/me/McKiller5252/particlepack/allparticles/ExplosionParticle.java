@@ -1,6 +1,5 @@
 package me.McKiller5252.particlepack.allparticles;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -18,14 +17,11 @@ public class ExplosionParticle implements Particle {
     {
         Location loc = player.getLocation().subtract(0, 2.0F, 0);
         ParticleEffects eff = ParticleEffects.HUGE_EXPLOSION;
-        for (Player pl : Bukkit.getOnlinePlayers())
-        {
             try {
-                eff.sendToPlayer(pl, loc, 0, 0, 0, 1, 1);
+                eff.display(loc, 0, 0, 0, 1, 1);
             } catch (Exception e) {
                 e.printStackTrace();
             }
-        }
     }
 
     @Override

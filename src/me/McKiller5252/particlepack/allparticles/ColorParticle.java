@@ -1,6 +1,5 @@
 package me.McKiller5252.particlepack.allparticles;
 
-import org.bukkit.Bukkit;
 import org.bukkit.Location;
 import org.bukkit.entity.Player;
 
@@ -18,19 +17,16 @@ public class ColorParticle implements Particle {
     {
         Location loc = player.getLocation();
         ParticleEffects eff = ParticleEffects.RED_DUST;
-        for (Player pl : Bukkit.getOnlinePlayers())
-        {
             try {
                 for (int i = 0; i < 25; i++)
                 {
                     float x = (float) (Math.random()*1.5);
                     float y = -0.5F;
                     float z = (float) (Math.random()*1.5);
-                    eff.sendToPlayer(pl, loc, x, y, z, 1, 1);
+                    eff.display(loc, x, y, z, 1, 1);
                 }
             } catch (Exception e) {
                 e.printStackTrace();
-            }
         }
     }
 
