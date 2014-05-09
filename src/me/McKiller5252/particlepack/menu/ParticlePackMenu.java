@@ -18,10 +18,11 @@ private Inventory inv;
 	
 	private ItemStack a, b, c, d, e ,f ,g ,h ,i ,j ,k ,l ,n, o , p, q, r, s, t, v;
 	private ItemStack z;
+	public ChatColor under = ChatColor.UNDERLINE;
 
 	public ParticlePackMenu(Plugin m) {
 		
-		inv = Bukkit.getServer().createInventory(null, 27, ChatColor.DARK_PURPLE + "ParticlePack Menu");
+		inv = Bukkit.getServer().createInventory(null, 27, ChatColor.MAGIC + "h " +  ChatColor.DARK_PURPLE + under.toString() + "ParticlePack Menu" + ChatColor.RESET + ChatColor.MAGIC + " h");
 		
 		a = createItem(Material.FIRE, ChatColor.GREEN + "Fire");
 		b = createItem(Material.FIREWORK, ChatColor.GREEN + "Firework");

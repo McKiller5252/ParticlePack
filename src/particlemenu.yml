@@ -1,0 +1,17 @@
+#===================================================ParticleMenu Config===================================================#
+#You can also edit the ParticleMenu title and lore
+#If you want the text to have color use this: http://minecraft.gamepedia.com/Formatting_codes
+
+#Give the ParticleMenu item a title
+ParticleMenuTitle: Particle Pack Menu
+
+#Give the ParticleMenu a lore
+#To create a new lore copy this but without the # and place is under the last page you wrote.
+#- ''
+#And put your text in between the ''
+ParticleMenuLore:
+- '&bRight click to open Particle Pack Menu'
+- '&aE&bt&cc.'
+
+#Slot # 0-8
+ParticleMenuSlot: 0

@@ -37,12 +37,11 @@ public class ParticlePack extends JavaPlugin implements Listener {
 	
 	private ParticlePackMenu ppgui;
 	
-	
 	public void onEnable(){
 		instance = this;
 		try
 		{
-			getLogger().info("ParticlePack Enabled! Enjoy the particles :D");
+			this.consoleOut("ParticlePack Enabled! Enjoy the particles :D");
 			
 			ppgui = new ParticlePackMenu(this);
 			
@@ -51,7 +50,6 @@ public class ParticlePack extends JavaPlugin implements Listener {
 			
 			registerEvents();
 			loadParticles();
-			
 			
 			@SuppressWarnings("unused")
 			BukkitTask Cooldown = new CoolDownManager(this).runTaskTimer(this, 20, 20);
@@ -96,8 +94,7 @@ public class ParticlePack extends JavaPlugin implements Listener {
 			 spawnItem.setItemMeta(im);
 			 player.getInventory().setItem(7, spawnItem);
 			 }
-		 }
-	
+	}
 	
 	private void loadParticles() throws IOException, InstantiationException, IllegalAccessException 
 	{
@@ -189,8 +186,13 @@ public class ParticlePack extends JavaPlugin implements Listener {
 
 	public void onDisable(){
 		
-		getLogger().info("ParticlePack Disabled! Sad to see it go bye bye");
+		this.consoleOut("ParticlePack Disabled! Sad to see it go bye bye");
 	
+	}
+	
+	private void consoleOut(String msg) {
+		System.out.println("[ParticlePack]" + msg);
+		
 	}
 	
 }
