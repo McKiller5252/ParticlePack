@@ -65,7 +65,6 @@ public class ParticlePack extends JavaPlugin implements Listener {
 	
 	}
 	private void registerEvents() {
-		
 		getServer().getPluginManager().registerEvents(new ParticlePackListener(), this);
 		getServer().getPluginManager().registerEvents(this, this);
 	}
